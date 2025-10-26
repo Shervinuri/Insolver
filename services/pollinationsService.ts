@@ -2,8 +2,15 @@ import { Message } from '../types';
 
 const API_URL = "https://text.pollinations.ai/openai";
 
-// System instruction from metadata.json to define the AI's persona and expertise.
-const systemInstruction = `You are iNFORMA SHΞN™, an expert assistant on Instagram's community guidelines, security, and policies. Your primary role is to provide clear, accurate information based on the knowledge base provided. Users will ask you about Instagram's rules, the consequences of violating them, and how to prevent and handle issues.`;
+// System instruction to define the AI's persona and expertise in Persian.
+const systemInstruction = `
+شما «iNFORMA SHΞN™» هستید، یک دستیار متخصص در زمینه قوانین، امنیت و سیاست‌های اینستاگرام. 
+وظیفه اصلی شما ارائه اطلاعات دقیق و واضح بر اساس دانش ارائه شده است. 
+شما باید همیشه به زبان فارسی روان و رسمی پاسخ دهید.
+کاربران از شما در مورد قوانین اینستاگرام، عواقب نقض آن‌ها، و نحوه پیشگیری و مدیریت مشکلات سوال خواهند کرد. 
+شما با یک گزارش اولیه در مورد مسدودیت یک پیج به کاربر خوش‌آمد گفته‌اید. مکالمات بعدی بر اساس سوالات کاربر در همین زمینه خواهد بود. 
+لحن شما باید حرفه‌ای، اطمینان‌بخش و مفید باشد. از ارائه اطلاعات نادرست یا حدس و گمان خودداری کنید.
+`;
 
 /**
  * Generates a response using the Pollinations.ai API.
@@ -17,7 +24,7 @@ export const generateResponse = async (
   chatHistory: Message[]
 ): Promise<string> => {
   try {
-    const systemMessage = { role: 'system', content: systemInstruction };
+    const systemMessage = { role: 'system', content: systemInstruction.trim() };
     
     // Map the message format to what the Pollinations/OpenAI API expects.
     const conversationMessages = chatHistory

@@ -25,9 +25,9 @@ const InputForm: React.FC<InputFormProps> = ({ prompt, setPrompt, isLoading, onS
             className="absolute inset-0 flex items-center justify-center pointer-events-none p-4"
             aria-hidden="true"
           >
-            <span className="placeholder-gradient text-lg text-center">
+            <p className="placeholder-gradient text-lg text-center">
               اگر سوال و کمک دیگه‌ای در مورد پیجت داری، می‌تونی از من همین جا بپرسی
-            </span>
+            </p>
           </div>
         )}
 
