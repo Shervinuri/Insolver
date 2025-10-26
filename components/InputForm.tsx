@@ -16,6 +16,8 @@ const InputForm: React.FC<InputFormProps> = ({ prompt, setPrompt, isLoading, onS
     }
   };
 
+  const placeholderText = "سوال یا راهنمایی دیگه‌ای برای پیجت نیاز داری؟";
+
   return (
     <div className="flex items-end gap-2">
       <div className="relative flex-grow">
@@ -25,15 +27,15 @@ const InputForm: React.FC<InputFormProps> = ({ prompt, setPrompt, isLoading, onS
             className="absolute inset-0 flex items-center justify-center pointer-events-none p-4"
             aria-hidden="true"
           >
-            <p className="placeholder-gradient text-lg text-center">
-              اگر سوال و کمک دیگه‌ای در مورد پیجت داری، می‌تونی از من همین جا بپرسی
+            <p className="placeholder-gradient text-base text-center">
+              {placeholderText}
             </p>
           </div>
         )}
 
         <textarea
           className="yellow-glass w-full rounded-2xl p-4 text-white placeholder:text-transparent focus:outline-none focus:ring-2 focus:ring-amber-400 transition-shadow resize-none min-h-[3.5rem]"
-          placeholder="اگر سوال و کمک دیگه‌ای در مورد پیجت داری، می‌تونی از من همین جا بپرسی"
+          placeholder={placeholderText}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           onKeyDown={handleKeyDown}
