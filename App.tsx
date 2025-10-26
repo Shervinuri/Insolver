@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Message } from './types';
-import { generateWithGemini } from './services/geminiService';
+import { generateResponse } from './services/pollinationsService';
 import ChatMessage from './components/ChatMessage';
 import InputForm from './components/InputForm';
 import { ShenIcon } from './components/Icons';
@@ -36,30 +36,30 @@ const App: React.FC = () => {
       role: 'user',
       content: prompt,
     };
-    
-    // In a real app, you might want to clear the initial report for a cleaner chat log
-    const currentHistory = chatHistory[0]?.content.startsWith('<!DOCTYPE') ? [newUserMessage] : [...chatHistory, newUserMessage];
-    
-    // For this implementation, we will keep the report in history
-    const updatedHistoryWithUser = [...chatHistory, newUserMessage];
 
+    const updatedHistoryWithUser = [...chatHistory, newUserMessage];
 
     setChatHistory(updatedHistoryWithUser);
     setPrompt('');
     setIsLoading(true);
 
+    // Simulate a short delay for UX consistency
+    await new Promise(resolve => setTimeout(resolve, 500));
+
     try {
-      const aiResponse = await generateWithGemini(prompt, updatedHistoryWithUser);
+      // Switched to the correct Pollinations service.
+      const aiResponse = await generateResponse(prompt, updatedHistoryWithUser);
+      
       const newAiMessage: Message = {
         role: 'model',
         content: aiResponse,
       };
       setChatHistory(prev => [...prev, newAiMessage]);
     } catch (error) {
-      console.error('Error fetching AI response:', error);
+      console.error('Error processing request:', error);
       const errorMessage: Message = {
         role: 'model',
-        content: 'Sorry, I encountered an error. Please try again.',
+        content: 'An error occurred while processing the request.',
       };
       setChatHistory(prev => [...prev, errorMessage]);
     } finally {
