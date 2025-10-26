@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iNFORMA SHΞN™</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes placeholder-gradient {
+          0% { background-position: -200% 50%; }
+          100% { background-position: 200% 50%; }
+        }
+        .placeholder-gradient {
+          background: linear-gradient(90deg, #FDE047, #FFFFFF, #F59E0B, #FFFFFF, #FDE047);
+          background-size: 400% 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-fill-color: transparent;
+          animation: placeholder-gradient 8s linear infinite;
+        }
+
+        /* New styles for glassmorphism */
+        @keyframes shine-effect {
+            0% { transform: translateX(-150%) skewX(-25deg); }
+            100% { transform: translateX(150%) skewX(-25deg); }
+        }
+
+        .yellow-glass {
+            position: relative;
+            overflow: hidden;
+            background: rgba(253, 224, 71, 0.1); /* Sightly yellow transparent bg */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(253, 224, 71, 0.2); /* Brighter border */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .yellow-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-150%) skewX(-25deg);
+            animation: shine-effect 5s infinite 1s; /* 5s duration, 1s delay */
+        }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-black">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
